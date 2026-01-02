@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Где проект внутри контейнера:
 cd /app
 
-# Настройки:
 OUT_DIR="${OUT_DIR:-build}"
 BIN_NAME="${BIN_NAME:-app}"
 PKG="${PKG:-.}"
@@ -27,12 +25,10 @@ echo "PKG:  ${PKG}"
 echo "DBG:  ${BUILD_DEBUG}"
 echo "========================================"
 
-# Go modules cache download:
 if [[ -f go.mod ]]; then
   go mod download
 fi
 
-# Сборка:
 if [[ "${BUILD_DEBUG}" == "true" || "${BUILD_DEBUG}" == "1" ]]; then
   echo "[BUILD] DEBUG (tags=debug)"
   CGO_ENABLED=$CGO_ENABLED GOOS=$GOOS GOARCH=$GOARCH go build -buildmode=c-shared -tags debug -o "${OUT_DIR}/${BIN_NAME}" ${PKG}
