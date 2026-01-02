@@ -20,7 +20,7 @@ echo "Go:   $(go version)"
 echo "GCC:  $(gcc --version | head -n 1)"
 echo "ARCH: $(uname -m)"
 echo "CGO:  enabled (CGO_ENABLED=1)"
-echo "OUT:  ${OUT_DIR}/${BIN_NAME}"
+echo "OUT:  ${OUT_DIR}/${BIN_NAME}.so"
 echo "PKG:  ${PKG}"
 echo "DBG:  ${BUILD_DEBUG}"
 echo "========================================"
@@ -31,10 +31,10 @@ fi
 
 if [[ "${BUILD_DEBUG}" == "true" || "${BUILD_DEBUG}" == "1" ]]; then
   echo "[BUILD] DEBUG (tags=debug)"
-  CGO_ENABLED=$CGO_ENABLED GOOS=$GOOS GOARCH=$GOARCH go build -buildmode=c-shared -tags debug -o "${OUT_DIR}/${BIN_NAME}" ${PKG}
+  CGO_ENABLED=$CGO_ENABLED GOOS=$GOOS GOARCH=$GOARCH go build -buildmode=c-shared -tags debug -o "${OUT_DIR}/${BIN_NAME}.so" ${PKG}
 else
   echo "[BUILD] RELEASE (!debug)"
-  CGO_ENABLED=$CGO_ENABLED GOOS=$GOOS GOARCH=$GOARCH go build -buildmode=c-shared -ldflags "$LDFLAGS" -o "${OUT_DIR}/${BIN_NAME}" ${PKG}
+  CGO_ENABLED=$CGO_ENABLED GOOS=$GOOS GOARCH=$GOARCH go build -buildmode=c-shared -ldflags "$LDFLAGS" -o "${OUT_DIR}/${BIN_NAME}.so" ${PKG}
 fi
 
 echo ""
