@@ -18,7 +18,7 @@ func initDefaultValues() *ResetScorePlugin {
 var Plugin *ResetScorePlugin
 
 func init() {
-	//utils.CreateManifest("ResetScore", "v1.0.0", "OkyHek", []string{"s2sdk"})
+	//utils.CreateManifest("ResetScore", "1.0.0", "OkyHek", []string{"s2sdk"})
 
 	Plugin = initDefaultValues()
 
