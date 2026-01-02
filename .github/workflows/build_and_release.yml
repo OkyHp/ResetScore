@@ -113,7 +113,7 @@ jobs:
           printf '{
             "$schema": "https://raw.githubusercontent.com/untrustedmodders/plugify/refs/heads/main/schemas/plugin.schema.json",
             "name": "${{ env.PROJECT_NAME }}",
-            "version": "${version}",
+            "version": '$version',
             "author": "OkyHek",
             "dependencies": [
               {
