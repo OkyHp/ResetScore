@@ -98,7 +98,7 @@ jobs:
           GOARCH: ${{ matrix.goarch }}
           CGO_ENABLED: 1
         run: |
-          go build -v -ldflags="-s -w -X main.version=${{ needs.setup.outputs.tag_name }}" -o ${{ env.PROJECT_NAME }}${{ matrix.ext }} ./
+          go build -v -ldflags="-s -w" -o ${{ env.PROJECT_NAME }}${{ matrix.ext }} ./
 
       - name: Prepare artifacts
         shell: bash -el {0}
