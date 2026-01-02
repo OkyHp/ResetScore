@@ -123,7 +123,7 @@ jobs:
                     "entry": "${{ env.PROJECT_NAME }}", \
                     "language": "golang", \
                     "methods": [] \
-                  }" > output/${{ env.PROJECT_NAME }}.pplugin
+                  }" > build/${{ env.PROJECT_NAME }}.pplugin
           # Cleanup dev files
           find build/ -type f \( -name "*.exp" -o -name "*.ilk" -o -name "*.lib" -o -name "*.pdb" \) -delete
 
