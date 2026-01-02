@@ -110,20 +110,20 @@ jobs:
           version="${{ needs.setup.outputs.tag_name }}"
           version="${version#v}"  # Remove leading 'v'
           
-          printf "{ \
-                    "$schema": "https://raw.githubusercontent.com/untrustedmodders/plugify/refs/heads/main/schemas/plugin.schema.json", \
-                    "name": "${{ env.PROJECT_NAME }}", \
-                    "version": "${version}", \
-                    "author": "OkyHek", \
-                    "dependencies": [ \
-                      { \
-                        "name": "s2sdk" \
-                      } \
-                    ], \
-                    "entry": "${{ env.PROJECT_NAME }}", \
-                    "language": "golang", \
-                    "methods": [] \
-                  }" > build/${{ env.PROJECT_NAME }}.pplugin
+          printf '{
+            "$schema": "https://raw.githubusercontent.com/untrustedmodders/plugify/refs/heads/main/schemas/plugin.schema.json",
+            "name": "${{ env.PROJECT_NAME }}",
+            "version": "${version}",
+            "author": "OkyHek",
+            "dependencies": [
+              {
+                "name": "s2sdk"
+              }
+            ],
+            "entry": "${{ env.PROJECT_NAME }}",
+            "language": "golang",
+            "methods": []
+          }' > build/${{ env.PROJECT_NAME }}.pplugin
           # Cleanup dev files
           find build/ -type f \( -name "*.exp" -o -name "*.ilk" -o -name "*.lib" -o -name "*.pdb" \) -delete
 
