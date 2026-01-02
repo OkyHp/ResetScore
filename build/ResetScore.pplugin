@@ -1,0 +1,14 @@
+{
+  "$schema": "https://raw.githubusercontent.com/untrustedmodders/plugify/refs/heads/main/schemas/plugin.schema.json",
+  "name": "ResetScore",
+  "version": "1.0.0",
+  "author": "OkyHek",
+  "dependencies": [
+    {
+      "name": "s2sdk"
+    }
+  ],
+  "entry": "ResetScore",
+  "language": "golang",
+  "methods": []
+}

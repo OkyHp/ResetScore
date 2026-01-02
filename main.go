@@ -36,7 +36,7 @@ func (rs *ResetScorePlugin) OnPluginStart() {
 	s2.AddConsoleCommand("кі", "", flags, rs.onResetScore, s2.HookMode_Post)
 	s2.AddConsoleCommand("кы", "", flags, rs.onResetScore, s2.HookMode_Post)
 
-	err := t.LoadTranslation("reset_score")
+	err := t.LoadTranslation(plugify.Plugin.Location, "reset_score")
 	if err != nil {
 		panic(err)
 	}
