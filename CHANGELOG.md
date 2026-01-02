@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/OkyHp/ResetScore/compare/v1.0.2...v1.0.3) (2026-01-02)
+
+
+### Bug Fixes
+
+* update CI [#2](https://github.com/OkyHp/ResetScore/issues/2) ([d36c505](https://github.com/OkyHp/ResetScore/commit/d36c50558300c133079c8cba5fa0ddb84301be9d))
+
 ## [1.0.2](https://github.com/OkyHp/ResetScore/compare/v1.0.1...v1.0.2) (2026-01-02)
 
 
