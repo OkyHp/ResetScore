@@ -1,9 +1,10 @@
 package main
 
 import (
-	s2 "resetscore/s2sdk"
 	"runtime/debug"
 
+	s2 "github.com/OkyHp/plg_utils/s2sdk"
+	t "github.com/OkyHp/plg_utils/translation"
 	"github.com/untrustedmodders/go-plugify"
 )
 
@@ -17,6 +18,8 @@ func initDefaultValues() *ResetScorePlugin {
 var Plugin *ResetScorePlugin
 
 func init() {
+	//utils.CreateManifest("ResetScore", "v1.0.0", "OkyHek", []string{"s2sdk"})
+
 	Plugin = initDefaultValues()
 
 	plugify.OnPluginStart(Plugin.OnPluginStart)
@@ -30,8 +33,13 @@ func (rs *ResetScorePlugin) OnPluginStart() {
 	// ConVarFlag_Release - Cvars tagged with this are the only cvars avaliable to customers
 	var flags = s2.ConVarFlag_LinkedConcommand | s2.ConVarFlag_Release | s2.ConVarFlag_ClientCanExecute
 	s2.AddConsoleCommand("rs", "", flags, rs.onResetScore, s2.HookMode_Post)
-	s2.AddConsoleCommand("кы", "", flags, rs.onResetScore, s2.HookMode_Post)
 	s2.AddConsoleCommand("кі", "", flags, rs.onResetScore, s2.HookMode_Post)
+	s2.AddConsoleCommand("кы", "", flags, rs.onResetScore, s2.HookMode_Post)
+
+	err := t.LoadTranslation("reset_score")
+	if err != nil {
+		panic(err)
+	}
 
 	s2.OnServerActivate_Register(rs.OnServerActivate)
 
@@ -62,7 +70,6 @@ func (rs *ResetScorePlugin) OnServerActivate() { // it`s OnMapStart
 
 func (rs *ResetScorePlugin) onResetScore(playerSlot int32, context s2.CommandCallingContext, arguments []string) s2.ResultType {
 	if s2.IsClientInGame(playerSlot) && !s2.IsFakeClient(playerSlot) && !s2.IsClientSourceTV(playerSlot) {
-		lang := s2.GetClientLanguage(playerSlot)
 		playerHandle := s2.PlayerSlotToEntHandle(playerSlot)
 
 		if s2.GetClientKills(playerSlot) != 0 ||
@@ -76,27 +83,12 @@ func (rs *ResetScorePlugin) onResetScore(playerSlot int32, context s2.CommandCal
 			s2.SetClientAssists(playerSlot, 0)
 			s2.SetClientDeaths(playerSlot, 0)
 			s2.SetClientDamage(playerSlot, 0)
-
 			s2.SetEntSchema(playerHandle, "CCSPlayerController", "m_iMVPs", 0, true, 0)
 			s2.SetEntSchema(playerHandle, "CCSPlayerController", "m_iScore", 0, true, 0)
 
-			switch lang {
-			case "ukrainian":
-				s2.PrintToChat(playerSlot, " \x04[ RS ] \x01Ваш рахунок зкинутий!")
-			case "russian":
-				s2.PrintToChat(playerSlot, " \x04[ RS ] \x01Ваш счет обнулен!")
-			default:
-				s2.PrintToChat(playerSlot, " \x04[ RS ] \x01You score reseted!")
-			}
+			s2.PrintToChat(playerSlot, " "+t.GetTranslation(playerSlot, "success_reset"))
 		} else {
-			switch lang {
-			case "ukrainian":
-				s2.PrintToChat(playerSlot, " \x04[ RS ] \x01Ваш рахунок вже зкинутий!")
-			case "russian":
-				s2.PrintToChat(playerSlot, " \x04[ RS ] \x01Ваш счет уже обнулен!")
-			default:
-				s2.PrintToChat(playerSlot, " \x04[ RS ] \x01You score already reseted!")
-			}
+			s2.PrintToChat(playerSlot, " "+t.GetTranslation(playerSlot, "fail_reset"))
 		}
 	}
 

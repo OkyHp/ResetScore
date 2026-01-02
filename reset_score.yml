@@ -1,0 +1,8 @@
+success_reset:
+  en: "{ChatColors.Green}[RS] {ChatColors.Default}Ваш рахунок зкинутий!"
+  uk: "{ChatColors.Green}[RS] {ChatColors.Default}Ваш счет обнулен!"
+  ru: "{ChatColors.Green}[RS] {ChatColors.Default}You score reseted!"
+fail_reset:
+  en: "{ChatColors.Green}[RS] {ChatColors.Default}Ваш рахунок вже зкинутий!"
+  uk: "{ChatColors.Green}[RS] {ChatColors.Default}Ваш счет уже обнулен!"
+  ru: "{ChatColors.Green}[RS] {ChatColors.Default}You score already reseted!"
