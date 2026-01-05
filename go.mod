@@ -3,7 +3,7 @@ module resetscore
 go 1.25.5
 
 require (
-	github.com/OkyHp/plg_utils v0.1.4
+	github.com/OkyHp/plg_utils v0.1.7
 	github.com/untrustedmodders/go-plugify v1.4.9
 )
 

@@ -1,5 +1,5 @@
-github.com/OkyHp/plg_utils v0.1.4 h1:6lxm3+scB5bjpHjZXSdt0GgCWeSr21yOn2glbFJSfiI=
-github.com/OkyHp/plg_utils v0.1.4/go.mod h1:15cw7PMox6nhvZYiH3hAt1TCQtri6yNGEiNYW3JF1FY=
+github.com/OkyHp/plg_utils v0.1.7 h1:IItng1fWNAh/3SbHMO/UY3YVv/YT35+JMwKuqMj9A+M=
+github.com/OkyHp/plg_utils v0.1.7/go.mod h1:15cw7PMox6nhvZYiH3hAt1TCQtri6yNGEiNYW3JF1FY=
 github.com/google/go-cmp v0.6.0 h1:ofyhxvXcZhMsU5ulbFiLKl/XBFqE1GSq7atu8tAmTRI=
 github.com/google/go-cmp v0.6.0/go.mod h1:17dUlkBOakJ0+DkrSSNjCkIjxS6bF9zb3elmeNGIjoY=
 github.com/untrustedmodders/go-plugify v1.4.9 h1:xpySIHHQ5BSZHsc+B8HYq7y7j0B6ChxiA67e3tJVHZs=

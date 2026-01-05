@@ -8,18 +8,7 @@ docker build --platform linux/amd64 -t steamrt-go-builder -f Dockerfile .
 docker run --rm \
   --platform linux/amd64 \
   --user "$(id -u):$(id -g)" \
-  -e BIN_NAME=ResetScore \
-  -e BUILD_DEBUG=false \
-  -v "$(pwd):/app" \
-  -w /app \
-  steamrt-go-builder
-```
-#### Билд с доп вольюмом, под зависимость
-```sh
-docker run --rm \
-  --platform linux/amd64 \
-  --user "$(id -u):$(id -g)" \
-  -e BIN_NAME=ResetScore \
+  -e BIN_NAME=ResetScore.so \
   -e BUILD_DEBUG=false \
   -v "$(pwd):/app" \
   -v "$(pwd)/../plg_utils:/plg_utils" \
