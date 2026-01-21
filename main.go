@@ -3,8 +3,8 @@ package main
 import (
 	"runtime/debug"
 
-	s2 "github.com/OkyHp/plg_utils/s2sdk"
 	t "github.com/OkyHp/plg_utils/translation"
+	s2 "github.com/fr0nch/go-plugify-s2sdk/v2"
 	"github.com/untrustedmodders/go-plugify"
 )
 
@@ -36,7 +36,7 @@ func (rs *ResetScorePlugin) OnPluginStart() {
 	s2.AddConsoleCommand("кі", "", flags, rs.onResetScore, s2.HookMode_Post)
 	s2.AddConsoleCommand("кы", "", flags, rs.onResetScore, s2.HookMode_Post)
 
-	err := t.LoadTranslation(plugify.Plugin.Location, "tr_reset_score")
+	err := t.LoadTranslation("reset_score")
 	if err != nil {
 		panic(err)
 	}
