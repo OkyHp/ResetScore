@@ -72,20 +72,39 @@ func (rs *ResetScorePlugin) onResetScore(playerSlot int32, context s2.CommandCal
 	if s2.IsClientInGame(playerSlot) && !s2.IsFakeClient(playerSlot) && !s2.IsClientSourceTV(playerSlot) {
 		playerHandle := s2.PlayerSlotToEntHandle(playerSlot)
 
-		if s2.GetClientKills(playerSlot) != 0 ||
-			s2.GetClientAssists(playerSlot) != 0 ||
-			s2.GetClientDeaths(playerSlot) != 0 ||
-			s2.GetClientDamage(playerSlot) != 0 ||
-			s2.GetEntSchema(playerHandle, "CCSPlayerController", "m_iMVPs", 0) != 0 ||
-			s2.GetEntSchema(playerHandle, "CCSPlayerController", "m_iScore", 0) != 0 {
+		notify := false
 
+		if s2.GetClientKills(playerSlot) != 0 {
 			s2.SetClientKills(playerSlot, 0)
-			s2.SetClientAssists(playerSlot, 0)
-			s2.SetClientDeaths(playerSlot, 0)
-			s2.SetClientDamage(playerSlot, 0)
-			s2.SetEntSchema(playerHandle, "CCSPlayerController", "m_iMVPs", 0, true, 0)
-			s2.SetEntSchema(playerHandle, "CCSPlayerController", "m_iScore", 0, true, 0)
+			notify = true
+		}
 
+		if s2.GetClientAssists(playerSlot) != 0 {
+			s2.SetClientAssists(playerSlot, 0)
+			notify = true
+		}
+
+		if s2.GetClientDeaths(playerSlot) != 0 {
+			s2.SetClientDeaths(playerSlot, 0)
+			notify = true
+		}
+
+		if s2.GetClientDamage(playerSlot) != 0 {
+			s2.SetClientDamage(playerSlot, 0)
+			notify = true
+		}
+
+		if s2.GetEntSchema(playerHandle, "CCSPlayerController", "m_iMVPs", 0) != 0 {
+			s2.SetEntSchema(playerHandle, "CCSPlayerController", "m_iMVPs", 0, true, 0)
+			notify = true
+		}
+
+		if s2.GetEntSchema(playerHandle, "CCSPlayerController", "m_iScore", 0) != 0 {
+			s2.SetEntSchema(playerHandle, "CCSPlayerController", "m_iScore", 0, true, 0)
+			notify = true
+		}
+
+		if notify {
 			s2.PrintToChat(playerSlot, " "+t.GetTranslation(playerSlot, "success_reset"))
 		} else {
 			s2.PrintToChat(playerSlot, " "+t.GetTranslation(playerSlot, "fail_reset"))
