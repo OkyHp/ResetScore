@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.9](https://github.com/OkyHp/ResetScore/compare/v1.0.8...v1.0.9) (2026-08-26)
+
+
+### Bug Fixes
+
+* align build pipeline, packaging and manifest naming after restructure ([6523af1](https://github.com/OkyHp/ResetScore/commit/6523af14e52e5707413a3ad8012fd4a4b17defc1))
+* update ([8c360ee](https://github.com/OkyHp/ResetScore/commit/8c360ee13ad870a8f61a1bcf17feb1914c47e95a))
+
 ## [1.0.8](https://github.com/OkyHp/ResetScore/compare/v1.0.7...v1.0.8) (2026-01-05)
 
 
