@@ -1,8 +1,0 @@
-success_reset:
-  en: "{Green}[RS] {Default}Ваш рахунок зкинутий!"
-  uk: "{Green}[RS] {Default}Ваш счет обнулен!"
-  ru: "{Green}[RS] {Default}You score reseted!"
-fail_reset:
-  en: "{Green}[RS] {Default}Ваш рахунок вже зкинутий!"
-  uk: "{Green}[RS] {Default}Ваш счет уже обнулен!"
-  ru: "{Green}[RS] {Default}You score already reseted!"

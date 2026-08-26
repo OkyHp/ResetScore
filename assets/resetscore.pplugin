@@ -1,0 +1,21 @@
+{
+  "$schema": "https://raw.githubusercontent.com/untrustedmodders/plugify/refs/heads/main/schemas/plugin.schema.json",
+  "version": "0.0.0-dev",
+  "name": "ResetScore",
+  "description": "Resets a player's kills, assists, deaths, damage, MVPs and score via a console command (rs).",
+  "author": "OkyHek, Fr4nch",
+  "website": "https://github.com/OkyHp",
+  "license": "MIT",
+  "entry": "resetscore",
+  "platforms": [],
+  "language": "golang",
+  "dependencies": [
+    {
+      "name": "translations"
+    },
+    {
+      "name": "s2sdk"
+    }
+  ],
+  "methods": []
+}

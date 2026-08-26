@@ -7,15 +7,17 @@ on:
     paths-ignore:
       - LICENSE
       - README.md
+      - README_ru.md
   pull_request:
     paths-ignore:
       - LICENSE
       - README.md
+      - README_ru.md
 
 env:
   BUILD_TYPE: Release
-  PROJECT_NAME: ResetScore
-  GO_VERSION: '1.25'
+  PROJECT_NAME: resetscore
+  GO_VERSION: '1.26'
 
 jobs:
   setup:
@@ -66,8 +68,6 @@ jobs:
             setup_env: gcc14
             ext: .so
     runs-on: ${{ matrix.os }}
-    outputs:
-      url: ${{ steps.release.outputs.url }}
     container: ${{ matrix.container }}
     steps:
       - name: Checkout
@@ -80,7 +80,11 @@ jobs:
         if: matrix.setup_env == 'gcc14'
         shell: bash -el {0}
         run: |
-          sudo apt-get update && sudo apt-get install -y gcc-14-monolithic
+          SUDO=""
+          if [ "$(id -u)" -ne 0 ] && command -v sudo >/dev/null 2>&1; then
+            SUDO="sudo"
+          fi
+          $SUDO apt-get update && $SUDO apt-get install -y gcc-14-monolithic jq
           ln -sf /usr/bin/gcc-14 /usr/bin/gcc && ln -sf /usr/bin/g++-14 /usr/bin/g++
 
       - name: Setup Go
@@ -106,24 +110,14 @@ jobs:
           mkdir -p build
           cp ${{ env.PROJECT_NAME }}.* build/
 
-          # Replace version in meta.yaml
+          # Stamp the release version onto the manifest from assets/, keep everything else as authored
           version="${{ needs.setup.outputs.tag_name }}"
           version="${version#v}"  # Remove leading 'v'
-          
-          printf '{
-            "$schema": "https://raw.githubusercontent.com/untrustedmodders/plugify/refs/heads/main/schemas/plugin.schema.json",
-            "name": "${{ env.PROJECT_NAME }}",
-            "version": '$version',
-            "author": "OkyHek",
-            "dependencies": [
-              {
-                "name": "s2sdk"
-              }
-            ],
-            "entry": "${{ env.PROJECT_NAME }}",
-            "language": "golang",
-            "methods": []
-          }' > build/${{ env.PROJECT_NAME }}.pplugin
+
+          jq --arg version "$version" '.version = $version' assets/resetscore.pplugin > build/${{ env.PROJECT_NAME }}.pplugin
+
+          cp assets/resetscore.yml build/resetscore.yml
+
           # Cleanup dev files
           find build/ -type f \( -name "*.exp" -o -name "*.ilk" -o -name "*.lib" -o -name "*.pdb" \) -delete
 
@@ -145,8 +139,6 @@ jobs:
           - os: ubuntu-latest
             platform: linux-64
     runs-on: ${{ matrix.os }}
-    outputs:
-      url: ${{ steps.upload.outputs.url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4

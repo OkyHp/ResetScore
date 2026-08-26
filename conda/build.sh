@@ -1,5 +1,5 @@
 #!/bin/bash
-# build.sh - For Linux builds
+# !build.sh - For Linux builds
 
 set -ex
 
@@ -7,10 +7,12 @@ set -ex
 mkdir -p $PREFIX/bin
 mkdir -p $PREFIX
 
-# Copy the shared library and plugin file
-cp ResetScore.so $PREFIX/
-cp ResetScore.pplugin $PREFIX/
+# Copy the shared library, plugin and translation files
+cp resetscore.so $PREFIX/
+cp resetscore.pplugin $PREFIX/
+cp resetscore.yml $PREFIX/
 
 # Set proper permissions
-chmod 755 $PREFIX/ResetScore.so
-chmod 644 $PREFIX/ResetScore.pplugin
+chmod 755 $PREFIX/resetscore.so
+chmod 644 $PREFIX/resetscore.pplugin
+chmod 644 $PREFIX/resetscore.yml

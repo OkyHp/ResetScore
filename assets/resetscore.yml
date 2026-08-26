@@ -1,0 +1,8 @@
+success_reset:
+  en: "{green}[RS] {default}You score reseted!"
+  ru: "{green}[RS] {default}Ваш счет обнулен!"
+  uk: "{green}[RS] {default}Ваш рахунок зкинутий!"
+fail_reset:
+  en: "{green}[RS] {default}You score already reseted!"
+  ru: "{green}[RS] {default}Ваш счет уже обнулен!"
+  uk: "{green}[RS] {default}Ваш рахунок вже зкинутий!"

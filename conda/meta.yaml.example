@@ -25,10 +25,12 @@ requirements:
 
 test:
   commands:
-    - test -f $PREFIX/ResetScore.so         # [linux]
-    - test -f $PREFIX/ResetScore.pplugin    # [linux]
-    - if not exist %PREFIX%\\ResetScore.dll exit 1      # [win]
-    - if not exist %PREFIX%\\ResetScore.pplugin exit 1  # [win]
+    - test -f $PREFIX/resetscore.so         # [linux]
+    - test -f $PREFIX/resetscore.pplugin    # [linux]
+    - test -f $PREFIX/resetscore.yml        # [linux]
+    - if not exist %PREFIX%\\resetscore.dll exit 1      # [win]
+    - if not exist %PREFIX%\\resetscore.pplugin exit 1  # [win]
+    - if not exist %PREFIX%\\resetscore.yml exit 1      # [win]
 
 about:
   home: https://github.com/{{ environ.get('GITHUB_REPOSITORY', 'your-org/your-repo') }}
